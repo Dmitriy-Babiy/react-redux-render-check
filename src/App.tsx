@@ -1,8 +1,19 @@
+import { Counter } from "./app/components";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "./app/counterSlice";
+import type { RootState } from "./app/store";
+
 function App() {
+  const dispatch = useDispatch();
+  const counter = useSelector((state: RootState) => state.counter.value);
+
   return (
     <>
-      <h1>Redux Toolkit Examples</h1>
-      <div className="card">test</div>
+      <Counter
+        value={counter}
+        increment={() => dispatch(increment())}
+        decrement={() => dispatch(decrement())}
+      />
     </>
   );
 }
